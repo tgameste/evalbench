@@ -1,0 +1,1186 @@
+[
+  {
+    "id": "fhir_patient_count",
+    "nl_prompt": "How many Patient resources are in the FHIR dataset?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Patient"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "count", "Patient"]
+  },
+  {
+    "id": "fhir_observation_count",
+    "nl_prompt": "How many Observation resources are in the FHIR dataset?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Observation"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "count", "Observation"]
+  },
+  {
+    "id": "fhir_encounter_count",
+    "nl_prompt": "How many Encounter resources are in the FHIR dataset?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Encounter"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "count", "Encounter"]
+  },
+  {
+    "id": "fhir_condition_count",
+    "nl_prompt": "How many Condition resources are in the FHIR dataset?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Condition"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "count", "Condition"]
+  },
+  {
+    "id": "fhir_procedure_count",
+    "nl_prompt": "How many Procedure resources are in the FHIR dataset?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Procedure"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "count", "Procedure"]
+  },
+  {
+    "id": "fhir_immunization_count",
+    "nl_prompt": "How many Immunization resources are in the FHIR dataset?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Immunization"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "count", "Immunization"]
+  },
+  {
+    "id": "fhir_patients_by_gender",
+    "nl_prompt": "How many patients are there in each gender?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT gender, COUNT(*) AS n FROM {{dataset}}.Patient GROUP BY gender"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "group", "Patient"]
+  },
+  {
+    "id": "fhir_encounters_by_status",
+    "nl_prompt": "How many encounters are there for each status?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT status, COUNT(*) AS n FROM {{dataset}}.Encounter GROUP BY status"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "group", "Encounter"]
+  },
+  {
+    "id": "fhir_final_observation_count",
+    "nl_prompt": "How many Observation resources have a status of final?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Observation WHERE status = 'final'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "filter", "Observation"]
+  },
+  {
+    "id": "fhir_heart_rate_observation_count",
+    "nl_prompt": "How many Observation resources have a code display of Heart rate?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Observation WHERE code.coding[SAFE_OFFSET(0)].display = 'Heart rate'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "filter", "Observation"]
+  },
+  {
+    "id": "fhir_patient_gender",
+    "nl_prompt": "What is the gender of Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Return ONLY gender. Do not return id or any other column.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT gender FROM {{dataset}}.Patient WHERE id = '74ee3ce8-e896-433b-bb89-43c8ad5b333a'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Patient"]
+  },
+  {
+    "id": "fhir_patient_observation_count",
+    "nl_prompt": "How many Observation resources are recorded for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Observation WHERE subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Observation"]
+  },
+  {
+    "id": "fhir_patient_encounter_count",
+    "nl_prompt": "How many Encounter resources are recorded for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Encounter WHERE subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Encounter"]
+  },
+  {
+    "id": "fhir_patient_condition_count",
+    "nl_prompt": "How many Condition resources are recorded for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Condition WHERE subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Condition"]
+  },
+  {
+    "id": "fhir_patient_careplan_count",
+    "nl_prompt": "How many unique CarePlan resources are recorded for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(DISTINCT id) AS n FROM {{dataset}}.CarePlan WHERE subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_patient_active_careplan_count",
+    "nl_prompt": "How many unique active CarePlan resources does Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a have?",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(DISTINCT id) AS n FROM {{dataset}}.CarePlan WHERE subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND status = 'active'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_patient_careplan_status",
+    "nl_prompt": "What is the status of CarePlan/e7b5bdec-76e5-4d97-9725-a43c29978af1 for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Return ONLY the status column. Do not select id, subject, or any other column.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT status FROM {{dataset}}.CarePlan WHERE id = 'e7b5bdec-76e5-4d97-9725-a43c29978af1' AND subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_patient_has_active_who_careplan",
+    "nl_prompt": "Does Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a have an active CarePlan with id e7b5bdec-76e5-4d97-9725-a43c29978af1? Return ONLY id and status. Filter with subject.patientId (subject.reference is often null). Do not select any other column.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT id, status FROM {{dataset}}.CarePlan WHERE id = 'e7b5bdec-76e5-4d97-9725-a43c29978af1' AND subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND status = 'active'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_patient_careplan_description",
+    "nl_prompt": "What is the description of CarePlan/e7b5bdec-76e5-4d97-9725-a43c29978af1? Return ONLY the description column from the latest streamed row. Do not use SELECT *.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT description FROM {{dataset}}.CarePlan WHERE id = 'e7b5bdec-76e5-4d97-9725-a43c29978af1' AND description IS NOT NULL QUALIFY ROW_NUMBER() OVER (ORDER BY commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_patient_pregnancy_risk_class",
+    "nl_prompt": "What is the current Pregnancy Risk Classification for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Return ONLY one column named risk_class with prediction[0].qualitativeRisk.coding[0].display from the pregnancy-risk RiskAssessment (code=pregnancy-risk). Filter with subject.patientId. One row. Do not return dates, codes, lastUpdated, or other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT prediction[SAFE_OFFSET(0)].qualitativeRisk.coding[SAFE_OFFSET(0)].display AS risk_class FROM {{dataset}}.RiskAssessment WHERE subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "RiskAssessment"]
+  },
+  {
+    "id": "fhir_patient_pregnancy_risk_since",
+    "nl_prompt": "Since what date has the current Pregnancy Risk Classification applied for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Return ONLY one column named since_date as YYYY-MM-DD using LEFT(occurrence.dateTime, 10) from the pregnancy-risk RiskAssessment (code=pregnancy-risk). Filter with subject.patientId. One row. Do not return id, risk code, or the raw timestamp.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT LEFT(occurrence.dateTime, 10) AS since_date FROM {{dataset}}.RiskAssessment WHERE subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "RiskAssessment"]
+  },
+  {
+    "id": "fhir_patient_9b553331_pregnant",
+    "nl_prompt": "Does Patient/9b553331-8f4a-43c1-b83f-55c6aa859de4 currently have an active Normal pregnancy Condition (SNOMED 72892002, id 650d96fc-9ee4-4019-9c6d-648e225681b5)? Return ONLY id and clinical_status (clinicalStatus.coding[0].code). Filter clinicalStatus to active and subject.patientId. Do not return display names or other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT id, clinicalStatus.coding[SAFE_OFFSET(0)].code AS clinical_status FROM {{dataset}}.Condition WHERE id = '650d96fc-9ee4-4019-9c6d-648e225681b5' AND subject.patientId = '9b553331-8f4a-43c1-b83f-55c6aa859de4' AND clinicalStatus.coding[SAFE_OFFSET(0)].code = 'active'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Condition", "pregnancy"]
+  },
+  {
+    "id": "fhir_patient_9b553331_who_careplan",
+    "nl_prompt": "Does Patient/9b553331-8f4a-43c1-b83f-55c6aa859de4 have an active CarePlan that instantiates the WHO 8-contact antenatal pathway (PlanDefinition/who-anc8 or https://langcare.example.org/fhir/PlanDefinition/who-anc8)? Return ONLY id, status, and description from the latest streamed row for CarePlan/386a9ae4-700d-4bbb-92d2-608e3e3e70ae. Filter with subject.patientId (subject.reference is often null). Do not return instantiatesCanonical, commitTimestamp, or other CarePlans.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT id, status, description FROM {{dataset}}.CarePlan WHERE id = '386a9ae4-700d-4bbb-92d2-608e3e3e70ae' AND subject.patientId = '9b553331-8f4a-43c1-b83f-55c6aa859de4' AND status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND description IS NOT NULL QUALIFY ROW_NUMBER() OVER (ORDER BY commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_patient_ac2deca4_pregnant",
+    "nl_prompt": "Does Patient/ac2deca4-3467-4fa2-bf84-ae74289ef331 currently have an active Normal pregnancy Condition (SNOMED 72892002, id 531a95c1-89d9-4a67-955c-d9a0a7a126b0)? Return ONLY id and clinical_status (clinicalStatus.coding[0].code). Filter clinicalStatus to active and subject.patientId. Do not return display names or other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT id, clinicalStatus.coding[SAFE_OFFSET(0)].code AS clinical_status FROM {{dataset}}.Condition WHERE id = '531a95c1-89d9-4a67-955c-d9a0a7a126b0' AND subject.patientId = 'ac2deca4-3467-4fa2-bf84-ae74289ef331' AND clinicalStatus.coding[SAFE_OFFSET(0)].code = 'active'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Condition", "pregnancy"]
+  },
+  {
+    "id": "fhir_patient_ac2deca4_who_careplan",
+    "nl_prompt": "Does Patient/ac2deca4-3467-4fa2-bf84-ae74289ef331 have an active CarePlan that instantiates the WHO 8-contact antenatal pathway (PlanDefinition/who-anc8 or https://langcare.example.org/fhir/PlanDefinition/who-anc8)? Return ONLY id, status, and description from the latest streamed row for CarePlan/d81645b6-8354-4cd5-9e4b-2fa552d910f7. Filter with subject.patientId (subject.reference is often null). Do not return instantiatesCanonical, commitTimestamp, or other CarePlans.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT id, status, description FROM {{dataset}}.CarePlan WHERE id = 'd81645b6-8354-4cd5-9e4b-2fa552d910f7' AND subject.patientId = 'ac2deca4-3467-4fa2-bf84-ae74289ef331' AND status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND description IS NOT NULL QUALIFY ROW_NUMBER() OVER (ORDER BY commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_patient_d4a31e4f_pregnant",
+    "nl_prompt": "Does Patient/d4a31e4f-2c79-4a7f-845b-519ef3c1f511 currently have an active Normal pregnancy Condition (SNOMED 72892002, id 4dbd1161-9806-43a0-9aa5-2db5f9591b6e)? Return ONLY id and clinical_status (clinicalStatus.coding[0].code). Filter clinicalStatus to active and subject.patientId. Do not return display names or other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT id, clinicalStatus.coding[SAFE_OFFSET(0)].code AS clinical_status FROM {{dataset}}.Condition WHERE id = '4dbd1161-9806-43a0-9aa5-2db5f9591b6e' AND subject.patientId = 'd4a31e4f-2c79-4a7f-845b-519ef3c1f511' AND clinicalStatus.coding[SAFE_OFFSET(0)].code = 'active'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Condition", "pregnancy"]
+  },
+  {
+    "id": "fhir_patient_d4a31e4f_who_careplan",
+    "nl_prompt": "Does Patient/d4a31e4f-2c79-4a7f-845b-519ef3c1f511 have an active CarePlan that instantiates the WHO 8-contact antenatal pathway (PlanDefinition/who-anc8 or https://langcare.example.org/fhir/PlanDefinition/who-anc8)? Return ONLY id, status, and description from the latest streamed row for CarePlan/aaa5d20e-41f7-498f-a509-f264d0878b2e. Filter with subject.patientId (subject.reference is often null). Do not return instantiatesCanonical, commitTimestamp, or other CarePlans.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT id, status, description FROM {{dataset}}.CarePlan WHERE id = 'aaa5d20e-41f7-498f-a509-f264d0878b2e' AND subject.patientId = 'd4a31e4f-2c79-4a7f-845b-519ef3c1f511' AND status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND description IS NOT NULL QUALIFY ROW_NUMBER() OVER (ORDER BY commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan"]
+  },
+  {
+    "id": "fhir_who_careplans_goals",
+    "nl_prompt": "For each active CarePlan that instantiates PlanDefinition/who-anc8, return the linked Goals. Join CarePlan.goal[].goalId to Goal.id and keep the latest streamed CarePlan row per plan and goal. Return ONLY careplan_id, goal_id, and goal_text (Goal.description.text). Do not return a second copy of the Goal id or other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cp.id AS careplan_id, cg.goalId AS goal_id, g.description.text AS goal_text FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.goal) cg JOIN {{dataset}}.Goal g ON g.id = cg.goalId AND g.subject.patientId = cp.subject.patientId WHERE EXISTS (SELECT 1 FROM UNNEST(instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND cp.status = 'active' QUALIFY ROW_NUMBER() OVER (PARTITION BY cp.id, cg.goalId ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "Goal"]
+  },
+  {
+    "id": "fhir_highrisk_careplan_goals",
+    "nl_prompt": "What Goals are tied to CarePlan/88b1a0f4-4085-454e-8149-e5b5ccc1a789 for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Join CarePlan.goal[].goalId to Goal.id. Return ONLY goal_id and goal_text, where goal_text is Goal.description.text. Do not return a second copy of the Goal id and do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cg.goalId AS goal_id, g.description.text AS goal_text FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.goal) cg JOIN {{dataset}}.Goal g ON g.id = cg.goalId WHERE cp.id = '88b1a0f4-4085-454e-8149-e5b5ccc1a789' AND cp.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND g.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' QUALIFY ROW_NUMBER() OVER (PARTITION BY cg.goalId ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan", "Goal"]
+  },
+  {
+    "id": "fhir_who_careplans_careteams",
+    "nl_prompt": "For each active CarePlan that instantiates PlanDefinition/who-anc8, return the established CareTeam. Join CarePlan.careTeam[].careTeamId to CareTeam.id and require the CareTeam to be active for the same patient. Return ONLY careplan_id, careteam_id, careteam_status, and participant_n (ARRAY_LENGTH of participants). Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cp.id AS careplan_id, ct.id AS careteam_id, ct.status AS careteam_status, ARRAY_LENGTH(ct.participant) AS participant_n FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.careTeam) cpt JOIN {{dataset}}.CareTeam ct ON ct.id = cpt.careTeamId AND ct.subject.patientId = cp.subject.patientId WHERE EXISTS (SELECT 1 FROM UNNEST(instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND cp.status = 'active' AND ct.status = 'active' QUALIFY ROW_NUMBER() OVER (PARTITION BY cp.id, ct.id ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "CareTeam"]
+  },
+  {
+    "id": "fhir_who_careplans_patient_actions",
+    "nl_prompt": "For every active CarePlan that instantiates PlanDefinition/who-anc8 or https://langcare.example.org/fhir/PlanDefinition/who-anc8, return ALL patient-action activities, not just one per plan. A patient-action activity has kind Task, a description starting with 'Patient action:', and performer[0].patientId equal to subject.patientId. Return ONLY careplan_id, activity_description, and performer_patient. Use QUALIFY ROW_NUMBER() OVER (PARTITION BY careplan id AND activity description ORDER BY commitTimestamp DESC) = 1 so every distinct activity is kept. Do not return subject.patientId as a third alias other than performer_patient. Do not filter to a single latest CarePlan in the dataset.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cp.id AS careplan_id, act.detail.description AS activity_description, act.detail.performer[SAFE_OFFSET(0)].patientId AS performer_patient FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.activity) act ON STARTS_WITH(act.detail.description, 'Patient action:') AND act.detail.kind = 'Task' AND act.detail.performer[SAFE_OFFSET(0)].patientId = cp.subject.patientId WHERE EXISTS (SELECT 1 FROM UNNEST(instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND cp.status = 'active' QUALIFY ROW_NUMBER() OVER (PARTITION BY cp.id, act.detail.description ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "activity"]
+  },
+  {
+    "id": "fhir_patient_who_careplan_goals",
+    "nl_prompt": "What Goals are tied to CarePlan/e7b5bdec-76e5-4d97-9725-a43c29978af1 for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Join CarePlan.goal[].goalId to Goal.id. Return ONLY goal_id and goal_text, where goal_text is Goal.description.text (the plain string). Do not return the raw description JSON object, do not hardcode Goal ids, and do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cg.goalId AS goal_id, g.description.text AS goal_text FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.goal) cg JOIN {{dataset}}.Goal g ON g.id = cg.goalId WHERE cp.id = 'e7b5bdec-76e5-4d97-9725-a43c29978af1' AND cp.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND g.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' QUALIFY ROW_NUMBER() OVER (PARTITION BY cg.goalId ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan", "Goal"]
+  },
+  {
+    "id": "fhir_patient_who_careplan_careteam",
+    "nl_prompt": "What CareTeam is established on CarePlan/e7b5bdec-76e5-4d97-9725-a43c29978af1 for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Join CarePlan.careTeam[].careTeamId to CareTeam.id. Return ONLY careteam_id, careteam_status, and participant_n (ARRAY_LENGTH of participants). Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT ct.id AS careteam_id, ct.status AS careteam_status, ARRAY_LENGTH(ct.participant) AS participant_n FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.careTeam) cpt JOIN {{dataset}}.CareTeam ct ON ct.id = cpt.careTeamId WHERE cp.id = 'e7b5bdec-76e5-4d97-9725-a43c29978af1' AND cp.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND ct.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND ct.status = 'active' QUALIFY ROW_NUMBER() OVER (ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan", "CareTeam"]
+  },
+  {
+    "id": "fhir_patient_who_careplan_patient_actions",
+    "nl_prompt": "Which activities on CarePlan/e7b5bdec-76e5-4d97-9725-a43c29978af1 are clearly marked for patient action? Patient-action activities have kind Task, a description starting with 'Patient action:', and performer Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a. Return ONLY activity_description and performer_patient. performer_patient must be the bare patient UUID (for example 74ee3ce8-e896-433b-bb89-43c8ad5b333a), not Patient/{id}. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT act.detail.description AS activity_description, act.detail.performer[SAFE_OFFSET(0)].patientId AS performer_patient FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.activity) act ON STARTS_WITH(act.detail.description, 'Patient action:') AND act.detail.kind = 'Task' AND act.detail.performer[SAFE_OFFSET(0)].patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' WHERE cp.id = 'e7b5bdec-76e5-4d97-9725-a43c29978af1' AND cp.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' QUALIFY ROW_NUMBER() OVER (PARTITION BY act.detail.description ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "CarePlan", "activity"]
+  },
+  {
+    "id": "fhir_all_pregnant_have_active_careplan",
+    "nl_prompt": "How many patients have an active Normal pregnancy Condition (SNOMED 72892002) but no active CarePlan? Return ONLY one column n. Join Condition.subject.patientId to CarePlan.subject.patientId. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Condition c WHERE c.clinicalStatus.coding[SAFE_OFFSET(0)].code = 'active' AND c.code.coding[SAFE_OFFSET(0)].code = '72892002' AND NOT EXISTS (SELECT 1 FROM {{dataset}}.CarePlan cp WHERE cp.subject.patientId = c.subject.patientId AND cp.status = 'active')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "pregnancy", "coverage"]
+  },
+  {
+    "id": "fhir_careplan_major_goals",
+    "nl_prompt": "For each active CarePlan, return ONLY patient_id, careplan_id, and goal_text of linked major goals. A major goal has Goal.category[0].text = 'major-goal'. Join CarePlan.goal[].goalId to Goal.id using subject.patientId. Keep the latest streamed CarePlan row per plan and goal. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cp.subject.patientId AS patient_id, cp.id AS careplan_id, g.description.text AS goal_text FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.goal) cg JOIN {{dataset}}.Goal g ON g.id = cg.goalId AND g.subject.patientId = cp.subject.patientId WHERE cp.status = 'active' AND g.category[SAFE_OFFSET(0)].text = 'major-goal' QUALIFY ROW_NUMBER() OVER (PARTITION BY cp.id, g.id ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "Goal"]
+  },
+  {
+    "id": "fhir_careplan_subgoals",
+    "nl_prompt": "Return the education sub-goals for pregnant patients. A sub-goal has Goal.category[0].text = 'sub-goal' and a description starting with 'Complete assigned'. Return ONLY patient_id, sub_goal, and part_of. part_of must be the full first note text exactly as stored (for example 'partOf: Goal/{id}'). Do not REGEXP_EXTRACT the Goal id, and do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT g.subject.patientId AS patient_id, g.description.text AS sub_goal, g.note[SAFE_OFFSET(0)].text AS part_of FROM {{dataset}}.Goal g WHERE g.category[SAFE_OFFSET(0)].text = 'sub-goal' AND STARTS_WITH(g.description.text, 'Complete assigned')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Goal", "education"]
+  },
+  {
+    "id": "fhir_pregnant_education_url",
+    "nl_prompt": "For each pregnant patient, return the golden maternal education URL from DocumentReference. Use type.text = 'Pregnancy education resource'. Return ONLY patient_id (subject.patientId) and education_url (content[0].attachment.url). Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT d.subject.patientId AS patient_id, d.content[SAFE_OFFSET(0)].attachment.url AS education_url FROM {{dataset}}.DocumentReference d WHERE d.type.text = 'Pregnancy education resource'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "DocumentReference", "education"]
+  },
+  {
+    "id": "fhir_education_url_by_risk",
+    "nl_prompt": "For each pregnant patient, return ONLY patient_id, risk_level, and education_url. Join the latest pregnancy-risk RiskAssessment (code=pregnancy-risk) to DocumentReference where type.text = 'Pregnancy education resource' on subject.patientId. risk_level is prediction[0].qualitativeRisk.text and education_url is content[0].attachment.url. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT ra.subject.patientId AS patient_id, ra.prediction[SAFE_OFFSET(0)].qualitativeRisk.text AS risk_level, d.content[SAFE_OFFSET(0)].attachment.url AS education_url FROM {{dataset}}.RiskAssessment ra JOIN {{dataset}}.DocumentReference d ON d.subject.patientId = ra.subject.patientId WHERE ra.code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk' AND d.type.text = 'Pregnancy education resource' QUALIFY ROW_NUMBER() OVER (PARTITION BY ra.subject.patientId ORDER BY ra.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "RiskAssessment", "education"]
+  },
+  {
+    "id": "fhir_education_patient_action",
+    "nl_prompt": "Return education-review activities from EVERY active CarePlan, not from only the latest CarePlan in the table. Filter kind Task, description starting with 'Patient action: review', performer[0].patientId = subject.patientId, and instantiatesUri present. Return ONLY patient_id (subject.patientId), activity_description, and education_url (instantiatesUri[0]). Keep the latest streamed row per CarePlan id AND activity description. Do not use LIMIT 1 on the CarePlan table.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cp.subject.patientId AS patient_id, act.detail.description AS activity_description, act.detail.instantiatesUri[SAFE_OFFSET(0)] AS education_url FROM {{dataset}}.CarePlan cp JOIN UNNEST(cp.activity) act ON STARTS_WITH(act.detail.description, 'Patient action: review') AND act.detail.kind = 'Task' AND act.detail.performer[SAFE_OFFSET(0)].patientId = cp.subject.patientId WHERE cp.status = 'active' QUALIFY ROW_NUMBER() OVER (PARTITION BY cp.id, act.detail.description ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "education", "activity"]
+  },
+  {
+    "id": "fhir_education_notified_complete",
+    "nl_prompt": "Which patients were notified that education resources are available and have marked that access complete? Query table Task, not TaskView. Filter code.text = 'Education resource access' AND status = 'completed'. The SELECT list must be exactly patient_id (for.patientId), status, and education_url (instantiatesUri). Do not select for.reference, lastUpdated, or any other column.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT t.`for`.patientId AS patient_id, t.status, t.instantiatesUri AS education_url FROM {{dataset}}.Task t WHERE t.code.text = 'Education resource access' AND t.status = 'completed'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Task", "education"]
+  },
+  {
+    "id": "fhir_patient_education_url",
+    "nl_prompt": "What is the golden maternal education URL for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a given her Moderate pregnancy risk and hypertension (SNOMED 59621000)? Return ONLY education_url from DocumentReference content[0].attachment.url where type.text is 'Pregnancy education resource' and subject.patientId is this patient. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT d.content[SAFE_OFFSET(0)].attachment.url AS education_url FROM {{dataset}}.DocumentReference d WHERE d.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND d.type.text = 'Pregnancy education resource'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "education"]
+  },
+  {
+    "id": "fhir_pregnancy_risk_has_basis",
+    "nl_prompt": "For each pregnant patient's pregnancy-risk RiskAssessment (code=pregnancy-risk), return ONLY patient_id, risk_level (prediction[0].qualitativeRisk.text), basis_n (ARRAY_LENGTH(basis)), and rationale (prediction[0].rationale). Filter with subject.patientId. These classifications must have supporting basis references. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT ra.subject.patientId AS patient_id, ra.prediction[SAFE_OFFSET(0)].qualitativeRisk.text AS risk_level, ARRAY_LENGTH(ra.basis) AS basis_n, ra.prediction[SAFE_OFFSET(0)].rationale AS rationale FROM {{dataset}}.RiskAssessment ra WHERE ra.code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk' AND ra.subject.patientId IN ('74ee3ce8-e896-433b-bb89-43c8ad5b333a', '9b553331-8f4a-43c1-b83f-55c6aa859de4', 'ac2deca4-3467-4fa2-bf84-ae74289ef331', 'd4a31e4f-2c79-4a7f-845b-519ef3c1f511', '2bae212d-9da5-4b31-957f-86f058f84503', 'e81035c5-f3fa-42ad-88a0-b58a1ea6c994', '7a1c7fda-6b1a-44ff-b694-08ac926564c1') QUALIFY ROW_NUMBER() OVER (PARTITION BY ra.subject.patientId ORDER BY ra.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "RiskAssessment", "evidence"]
+  },
+  {
+    "id": "fhir_pregnancy_risk_without_obs_evidence",
+    "nl_prompt": "How many pregnancy-risk RiskAssessments for the seven pregnant patients have no Observation basis whose category text is risk-evidence? Filter RiskAssessment.code.coding[0].code = 'pregnancy-risk' (not display LIKE). Restrict subject.patientId to the seven pregnant patients. Join UNNEST(basis) to Observation.id on basis.observationId (ANALYTICS_V2 typed id; reference is often null). Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.RiskAssessment ra WHERE ra.code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk' AND ra.subject.patientId IN ('74ee3ce8-e896-433b-bb89-43c8ad5b333a', '9b553331-8f4a-43c1-b83f-55c6aa859de4', 'ac2deca4-3467-4fa2-bf84-ae74289ef331', 'd4a31e4f-2c79-4a7f-845b-519ef3c1f511', '2bae212d-9da5-4b31-957f-86f058f84503', 'e81035c5-f3fa-42ad-88a0-b58a1ea6c994', '7a1c7fda-6b1a-44ff-b694-08ac926564c1') AND NOT EXISTS (SELECT 1 FROM UNNEST(ra.basis) b JOIN {{dataset}}.Observation o ON o.id = b.observationId WHERE EXISTS (SELECT 1 FROM UNNEST(o.category) c WHERE c.text = 'risk-evidence'))"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "RiskAssessment", "Observation", "evidence"]
+  },
+  {
+    "id": "fhir_risk_evidence_observations",
+    "nl_prompt": "Return the Observations that explicitly support pregnancy risk classification. Filter category text = 'risk-evidence'. Return ONLY patient_id, loinc (code.coding[0].code), and interp (interpretation[0].coding[0].code). Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT o.subject.patientId AS patient_id, o.code.coding[SAFE_OFFSET(0)].code AS loinc, o.interpretation[SAFE_OFFSET(0)].coding[SAFE_OFFSET(0)].code AS interp FROM {{dataset}}.Observation o WHERE EXISTS (SELECT 1 FROM UNNEST(o.category) c WHERE c.text = 'risk-evidence')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Observation", "evidence"]
+  },
+  {
+    "id": "fhir_risk_evidence_reports",
+    "nl_prompt": "Return the DiagnosticReport results that document pregnancy-risk evidence. Filter code.text = 'Pregnancy risk evidence panel'. Return ONLY patient_id and conclusion. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT dr.subject.patientId AS patient_id, dr.conclusion FROM {{dataset}}.DiagnosticReport dr WHERE dr.code.text = 'Pregnancy risk evidence panel'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "DiagnosticReport", "evidence"]
+  },
+  {
+    "id": "fhir_patient_risk_evidence_bp",
+    "nl_prompt": "What blood-pressure component values support the Moderate pregnancy-risk classification for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Use the Observation whose category text is risk-evidence and LOINC is 85354-9. Return ONLY loinc (component code) and value (INT64 mmHg) for systolic 8480-6 and diastolic 8462-4. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT comp.code.coding[SAFE_OFFSET(0)].code AS loinc, CAST(comp.value.quantity.value AS INT64) AS value FROM {{dataset}}.Observation o JOIN UNNEST(o.component) comp WHERE o.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND o.code.coding[SAFE_OFFSET(0)].code = '85354-9' AND EXISTS (SELECT 1 FROM UNNEST(o.category) c WHERE c.text = 'risk-evidence')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Observation", "evidence"]
+  },
+  {
+    "id": "fhir_high_risk_evidence_protein",
+    "nl_prompt": "What urine-protein result supports the High pregnancy-risk classification for Patient/ac2deca4-3467-4fa2-bf84-ae74289ef331? Use the Observation whose category text is risk-evidence and LOINC is 5804-0. Return ONLY protein_mg_dl (INT64) and interp. interp must be interpretation[0].coding[0].code (for example HH), not interpretation text or display. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT CAST(o.value.quantity.value AS INT64) AS protein_mg_dl, o.interpretation[SAFE_OFFSET(0)].coding[SAFE_OFFSET(0)].code AS interp FROM {{dataset}}.Observation o WHERE o.subject.patientId = 'ac2deca4-3467-4fa2-bf84-ae74289ef331' AND o.code.coding[SAFE_OFFSET(0)].code = '5804-0' AND EXISTS (SELECT 1 FROM UNNEST(o.category) c WHERE c.text = 'risk-evidence')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "Observation", "evidence"]
+  },
+  {
+    "id": "fhir_risk_report_links_observations",
+    "nl_prompt": "For each Pregnancy risk evidence panel DiagnosticReport, return ONLY patient_id and evidence_obs_n. Filter with DiagnosticReport.code.text = 'Pregnancy risk evidence panel' (not coding.display). Join result[].observationId (or the Observation/ reference) to Observation.id and count distinct risk-evidence Observations (category.text = 'risk-evidence'). Each report links two evidence Observations. Group by patient_id only. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT dr.subject.patientId AS patient_id, COUNT(DISTINCT o.id) AS evidence_obs_n FROM {{dataset}}.DiagnosticReport dr JOIN UNNEST(dr.result) r JOIN {{dataset}}.Observation o ON o.id = COALESCE(r.observationId, REGEXP_REPLACE(IFNULL(r.reference, ''), r'^Observation/', '')) WHERE dr.code.text = 'Pregnancy risk evidence panel' AND EXISTS (SELECT 1 FROM UNNEST(o.category) c WHERE c.text = 'risk-evidence') GROUP BY patient_id"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "DiagnosticReport", "Observation", "evidence"]
+  },
+  {
+    "id": "fhir_pregnant_without_who_anc8",
+    "nl_prompt": "How many patients have an active Normal pregnancy Condition (SNOMED 72892002) but no active CarePlan that instantiates PlanDefinition/who-anc8 (or https://langcare.example.org/fhir/PlanDefinition/who-anc8)? Return ONLY n. Join on subject.patientId. Every pregnant patient must be on the WHO ANC8 CarePlan.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Condition c WHERE c.clinicalStatus.coding[SAFE_OFFSET(0)].code = 'active' AND c.code.coding[SAFE_OFFSET(0)].code = '72892002' AND NOT EXISTS (SELECT 1 FROM {{dataset}}.CarePlan cp WHERE cp.subject.patientId = c.subject.patientId AND cp.status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')))"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "pregnancy", "who-anc8"]
+  },
+  {
+    "id": "fhir_who_without_ai_risk",
+    "nl_prompt": "How many active WHO ANC8 CarePlans have no AI pregnancy-risk RiskAssessment? Identify WHO ANC8 via instantiatesCanonical IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8'). An AI RA has code.coding[0].code = 'pregnancy-risk' AND method.coding[0].code = 'pregnancy_risk_assessment' on the same subject.patientId. Return ONLY one column named n (the gap count). Do not return total_active, assessed_count, or unassessed_count. If every WHO patient has an AI RA, n is 0.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.CarePlan cp WHERE cp.status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND NOT EXISTS (SELECT 1 FROM {{dataset}}.RiskAssessment ra WHERE ra.subject.patientId = cp.subject.patientId AND ra.code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk' AND ra.method.coding[SAFE_OFFSET(0)].code = 'pregnancy_risk_assessment')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "RiskAssessment", "who-anc8"]
+  },
+  {
+    "id": "fhir_who_ai_risk_roster",
+    "nl_prompt": "For each active WHO ANC8 CarePlan, return the AI pregnancy-risk assessment. Identify WHO ANC8 via CarePlan.instantiatesCanonical IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8'), not title or description LIKE (that also matches the high-risk plan 88b1a0f4-4085-454e-8149-e5b5ccc1a789). Filter RiskAssessment with code=pregnancy-risk and method.coding[0].code = pregnancy_risk_assessment. Return ONLY patient_id, careplan_id, method (RiskAssessment.method.text), and risk_level (prediction[0].qualitativeRisk.text). One latest row per patient. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cp.subject.patientId AS patient_id, cp.id AS careplan_id, ra.method.text AS method, ra.prediction[SAFE_OFFSET(0)].qualitativeRisk.text AS risk_level FROM {{dataset}}.CarePlan cp JOIN {{dataset}}.RiskAssessment ra ON ra.subject.patientId = cp.subject.patientId AND ra.code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk' AND ra.method.coding[SAFE_OFFSET(0)].code = 'pregnancy_risk_assessment' WHERE cp.status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) QUALIFY ROW_NUMBER() OVER (PARTITION BY cp.subject.patientId ORDER BY ra.commitTimestamp DESC, cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "RiskAssessment", "who-anc8"]
+  },
+  {
+    "id": "fhir_pra_incomplete_input",
+    "nl_prompt": "How many patients on an active WHO ANC8 CarePlan are missing any Observation the AI pregnancy-risk agent needs? Identify WHO ANC8 via CarePlan.instantiatesCanonical IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8'), not title or description LIKE. Required LOINC codes are 85354-9 (BP), 5804-0 (urine protein), 82810-3 (pregnancy status), 11881-0 (gestational age), 39156-5 (BMI), 2345-7 (glucose), and 72166-2 (smoking). A patient is incomplete if any required code is absent for subject.patientId. Return ONLY a single row with column n (COUNT of incomplete patients). Do not return one row per patient.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH who AS (SELECT DISTINCT cp.subject.patientId AS patient_id FROM {{dataset}}.CarePlan cp WHERE cp.status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8'))), req AS (SELECT loinc FROM UNNEST(['85354-9', '5804-0', '82810-3', '11881-0', '39156-5', '2345-7', '72166-2']) AS loinc), have AS (SELECT DISTINCT o.subject.patientId AS patient_id, o.code.coding[SAFE_OFFSET(0)].code AS loinc FROM {{dataset}}.Observation o JOIN who ON who.patient_id = o.subject.patientId WHERE o.code.coding[SAFE_OFFSET(0)].code IN ('85354-9', '5804-0', '82810-3', '11881-0', '39156-5', '2345-7', '72166-2')), missing AS (SELECT who.patient_id FROM who CROSS JOIN req LEFT JOIN have ON have.patient_id = who.patient_id AND have.loinc = req.loinc WHERE have.loinc IS NULL GROUP BY who.patient_id) SELECT COUNT(*) AS n FROM missing"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Observation", "RiskAssessment", "who-anc8"]
+  },
+  {
+    "id": "fhir_ai_risk_ungrounded",
+    "nl_prompt": "How many AI pregnancy-risk RiskAssessments (code=pregnancy-risk, method.coding[0].code = pregnancy_risk_assessment) for WHO ANC8 patients lack a defendable evidence trail? Identify WHO ANC8 patients via an active CarePlan whose instantiatesCanonical is PlanDefinition/who-anc8 or https://langcare.example.org/fhir/PlanDefinition/who-anc8. A RiskAssessment is grounded if prediction[0].rationale is non-blank AND ANY basis.observationId joins Observation.id with category.text = 'risk-evidence'. Do not LEFT JOIN UNNEST(basis) and treat unmatched conditionId/diagnosticReportId rows as ungrounded — use NOT EXISTS on the RiskAssessment instead. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.RiskAssessment ra WHERE ra.code.coding[SAFE_OFFSET(0)].code = 'pregnancy-risk' AND ra.method.coding[SAFE_OFFSET(0)].code = 'pregnancy_risk_assessment' AND ra.subject.patientId IN (SELECT DISTINCT cp.subject.patientId FROM {{dataset}}.CarePlan cp WHERE cp.status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8'))) AND (NULLIF(TRIM(ra.prediction[SAFE_OFFSET(0)].rationale), '') IS NULL OR NOT EXISTS (SELECT 1 FROM UNNEST(ra.basis) b JOIN {{dataset}}.Observation o ON o.id = b.observationId WHERE EXISTS (SELECT 1 FROM UNNEST(o.category) c WHERE c.text = 'risk-evidence')))"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "RiskAssessment", "evidence", "who-anc8"]
+  },
+  {
+    "id": "fhir_pregnant_missing_prams",
+    "nl_prompt": "How many patients have an active Normal pregnancy Condition (SNOMED 72892002) but no completed QuestionnaireResponse for Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5 (CDC PRAMS Phase 9.2 Core)? Join Condition.subject.patientId to QuestionnaireResponse.subject.patientId. Filter QuestionnaireResponse.status = 'completed' and questionnaire = 'Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5'. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.Condition c WHERE c.clinicalStatus.coding[SAFE_OFFSET(0)].code = 'active' AND c.code.coding[SAFE_OFFSET(0)].code = '72892002' AND NOT EXISTS (SELECT 1 FROM {{dataset}}.QuestionnaireResponse qr WHERE qr.subject.patientId = c.subject.patientId AND qr.status = 'completed' AND qr.questionnaire = 'Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "QuestionnaireResponse", "pregnancy"]
+  },
+  {
+    "id": "fhir_prams_completion_roster",
+    "nl_prompt": "For each completed CDC PRAMS Phase 9.2 Core QuestionnaireResponse (questionnaire = Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5, status = completed), return ONLY patient_id (subject.patientId), qr_status, and questionnaire. Use subject.patientId. Keep the latest streamed row per patient. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT qr.subject.patientId AS patient_id, qr.status AS qr_status, qr.questionnaire FROM {{dataset}}.QuestionnaireResponse qr WHERE qr.status = 'completed' AND qr.questionnaire = 'Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5' QUALIFY ROW_NUMBER() OVER (PARTITION BY qr.subject.patientId ORDER BY qr.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "QuestionnaireResponse"]
+  },
+  {
+    "id": "fhir_prams_still_pregnant",
+    "nl_prompt": "How many completed CDC PRAMS QuestionnaireResponses (questionnaire = Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5) answer linkId core-41 (Current pregnancy-prevention status) with coding.code = pregnant? UNNEST item then item again to reach the flattened leaf. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.QuestionnaireResponse qr JOIN UNNEST(qr.item) s JOIN UNNEST(s.item) q ON q.linkId = 'core-41' WHERE qr.status = 'completed' AND qr.questionnaire = 'Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5' AND q.answer[SAFE_OFFSET(0)].value.coding.code = 'pregnant'"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "QuestionnaireResponse"]
+  },
+  {
+    "id": "fhir_patient_prams_hypertension",
+    "nl_prompt": "Did Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a report pre-pregnancy hypertension on the completed CDC PRAMS questionnaire? Use QuestionnaireResponse.status = completed, questionnaire = Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5, and leaf linkId core-3-b. Return ONLY answered as the boolean value. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT q.answer[SAFE_OFFSET(0)].value.boolean AS answered FROM {{dataset}}.QuestionnaireResponse qr JOIN UNNEST(qr.item) s JOIN UNNEST(s.item) q ON q.linkId = 'core-3-b' WHERE qr.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND qr.status = 'completed' AND qr.questionnaire = 'Questionnaire/1eb98103-88ef-411c-8d5b-1dce22f6dbd5' QUALIFY ROW_NUMBER() OVER (ORDER BY qr.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "patient", "QuestionnaireResponse"]
+  },
+  {
+    "id": "fhir_who_missing_prams_action",
+    "nl_prompt": "How many active WHO ANC8 CarePlans are missing a completed patient-action to finish the CDC PRAMS Phase 9.2 Core Questionnaire? Identify WHO ANC8 via instantiatesCanonical IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8'). The activity description is exactly 'Patient action: complete the CDC PRAMS Phase 9.2 Core Questionnaire', kind Task, status completed. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT COUNT(*) AS n FROM {{dataset}}.CarePlan cp WHERE cp.status = 'active' AND EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND NOT EXISTS (SELECT 1 FROM UNNEST(cp.activity) act WHERE act.detail.description = 'Patient action: complete the CDC PRAMS Phase 9.2 Core Questionnaire' AND act.detail.kind = 'Task' AND act.detail.status = 'completed')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "Questionnaire"]
+  },
+  {
+    "id": "fhir_who_ad_missing",
+    "nl_prompt": "How many unique ActivityDefinition canonicals on the active WHO ANC8 PlanDefinition (id 9dbd5bef-7198-41f9-a575-9e1beff90df9) have no matching active ActivityDefinition.url? UNNEST PlanDefinition.action then action again; take SPLIT(leaf.definition.canonical, '|')[OFFSET(0)]. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH needed AS (SELECT DISTINCT SPLIT(leaf.definition.canonical, '|')[OFFSET(0)] AS url FROM {{dataset}}.PlanDefinition pd, UNNEST(pd.action) contact, UNNEST(contact.action) leaf WHERE pd.id = '9dbd5bef-7198-41f9-a575-9e1beff90df9' AND leaf.definition.canonical IS NOT NULL) SELECT COUNT(*) AS n FROM needed WHERE NOT EXISTS (SELECT 1 FROM {{dataset}}.ActivityDefinition ad WHERE ad.url = needed.url AND ad.status = 'active')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "PlanDefinition", "ActivityDefinition"]
+  },
+  {
+    "id": "fhir_who_ad_templates",
+    "nl_prompt": "Return the definitional WHO ANC8 ActivityDefinitions that PlanDefinition/who-anc8 can apply. Join ActivityDefinition.url to the distinct leaf definition.canonical values on PlanDefinition id 9dbd5bef-7198-41f9-a575-9e1beff90df9 (strip any |version suffix). Keep only status = active and the latest streamed row per url. Return ONLY url, kind, intent, and participant_type (participant[0].type). Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH needed AS (SELECT DISTINCT SPLIT(leaf.definition.canonical, '|')[OFFSET(0)] AS url FROM {{dataset}}.PlanDefinition pd, UNNEST(pd.action) contact, UNNEST(contact.action) leaf WHERE pd.id = '9dbd5bef-7198-41f9-a575-9e1beff90df9' AND leaf.definition.canonical IS NOT NULL) SELECT ad.url, ad.kind, ad.intent, ad.participant[SAFE_OFFSET(0)].type AS participant_type FROM {{dataset}}.ActivityDefinition ad INNER JOIN needed ON ad.url = needed.url WHERE ad.status = 'active' QUALIFY ROW_NUMBER() OVER (PARTITION BY ad.url ORDER BY ad.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "ActivityDefinition"]
+  },
+  {
+    "id": "fhir_who_ad_blood_pressure",
+    "nl_prompt": "What is the definitional template for measuring maternal blood pressure on the WHO ANC8 pathway? Query table ActivityDefinition, not ActivityDefinitionView. Filter url = 'https://langcare.example.org/fhir/ActivityDefinition/practice-blood-pressure' AND status = 'active'. Keep one latest streamed row with QUALIFY ROW_NUMBER() OVER (ORDER BY commitTimestamp DESC) = 1. The SELECT list must be exactly kind, intent, code_snomed (code.coding[SAFE_OFFSET(0)].code), and participant_type (participant[SAFE_OFFSET(0)].type). Do not select meta, lastUpdated, id, or any other column.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT ad.kind, ad.intent, ad.code.coding[SAFE_OFFSET(0)].code AS code_snomed, ad.participant[SAFE_OFFSET(0)].type AS participant_type FROM {{dataset}}.ActivityDefinition ad WHERE ad.url = 'https://langcare.example.org/fhir/ActivityDefinition/practice-blood-pressure' AND ad.status = 'active' QUALIFY ROW_NUMBER() OVER (ORDER BY ad.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "ActivityDefinition"]
+  },
+  {
+    "id": "fhir_pregnant_missing_study",
+    "nl_prompt": "How many patients have an active Normal pregnancy Condition (SNOMED 72892002) but no on-study ResearchSubject for ResearchStudy/e7e8ae43-a33e-45c2-a0e3-be909d319ff9? Join Condition.subject.patientId to ResearchSubject.individual.patientId. Filter ResearchSubject.status = 'on-study' AND study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9'. The SQL must query both Condition and ResearchSubject (NOT EXISTS or LEFT JOIN ... WHERE rs.individual.patientId IS NULL). Do not COUNT Condition rows alone and do not hardcode patient UUIDs. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH pregnant AS (SELECT DISTINCT c.subject.patientId AS patient_id FROM {{dataset}}.Condition c, UNNEST(c.code.coding) coding WHERE coding.code = '72892002' AND c.clinicalStatus.coding[SAFE_OFFSET(0)].code = 'active') SELECT COUNT(*) AS n FROM pregnant WHERE NOT EXISTS (SELECT 1 FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9' AND rs.individual.patientId = pregnant.patient_id)"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "ResearchSubject"]
+  },
+  {
+    "id": "fhir_study_enrollment_roster",
+    "nl_prompt": "Return the on-study ResearchSubjects for ResearchStudy id e7e8ae43-a33e-45c2-a0e3-be909d319ff9. Use ResearchSubject.study.researchStudyId. Return ONLY patient_id (individual.patientId), status, and assigned_arm (assignedArm). Keep the latest streamed row per patient. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT rs.individual.patientId AS patient_id, rs.status, rs.assignedArm AS assigned_arm FROM {{dataset}}.ResearchSubject rs WHERE rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9' AND rs.status = 'on-study' QUALIFY ROW_NUMBER() OVER (PARTITION BY rs.individual.patientId ORDER BY rs.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "ResearchSubject"]
+  },
+  {
+    "id": "fhir_enrolled_missing_mortality_goal",
+    "nl_prompt": "How many on-study ResearchSubjects for ResearchStudy id e7e8ae43-a33e-45c2-a0e3-be909d319ff9 are missing an active major goal titled exactly 'Maternal Health Mortality Reduction'? Major goals have Goal.category[0].text = 'major-goal'. Match Goal.subject.patientId to ResearchSubject.individual.patientId. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH enrolled AS (SELECT DISTINCT rs.individual.patientId AS patient_id FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9') SELECT COUNT(*) AS n FROM enrolled e WHERE NOT EXISTS (SELECT 1 FROM {{dataset}}.Goal g WHERE g.subject.patientId = e.patient_id AND g.lifecycleStatus = 'active' AND g.category[SAFE_OFFSET(0)].text = 'major-goal' AND g.description.text = 'Maternal Health Mortality Reduction')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "ResearchSubject", "Goal"]
+  },
+  {
+    "id": "fhir_enrolled_missing_neonatal_goal",
+    "nl_prompt": "How many on-study ResearchSubjects for ResearchStudy id e7e8ae43-a33e-45c2-a0e3-be909d319ff9 are missing an active major goal titled exactly 'Neonatal / Fetal Co-morbidity Reduction'? Major goals have Goal.category[0].text = 'major-goal'. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH enrolled AS (SELECT DISTINCT rs.individual.patientId AS patient_id FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9') SELECT COUNT(*) AS n FROM enrolled e WHERE NOT EXISTS (SELECT 1 FROM {{dataset}}.Goal g WHERE g.subject.patientId = e.patient_id AND g.lifecycleStatus = 'active' AND g.category[SAFE_OFFSET(0)].text = 'major-goal' AND g.description.text = 'Neonatal / Fetal Co-morbidity Reduction')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "ResearchSubject", "Goal"]
+  },
+  {
+    "id": "fhir_mortality_goal_education_subgoal",
+    "nl_prompt": "For on-study patients on ResearchStudy e7e8ae43-a33e-45c2-a0e3-be909d319ff9, return the education sub-goal that is partOf the 'Maternal Health Mortality Reduction' major goal. Join sub-goal note.text = CONCAT('partOf: Goal/', major.id). Return ONLY patient_id, major_goal, and sub_goal. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH enrolled AS (SELECT DISTINCT rs.individual.patientId AS patient_id FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9'), majors AS (SELECT g.subject.patientId AS patient_id, g.id AS goal_id, g.description.text AS major_goal FROM {{dataset}}.Goal g WHERE g.lifecycleStatus = 'active' AND g.category[SAFE_OFFSET(0)].text = 'major-goal' AND g.description.text = 'Maternal Health Mortality Reduction' QUALIFY ROW_NUMBER() OVER (PARTITION BY g.id ORDER BY g.commitTimestamp DESC) = 1) SELECT m.patient_id, m.major_goal, s.description.text AS sub_goal FROM enrolled e INNER JOIN majors m ON m.patient_id = e.patient_id INNER JOIN {{dataset}}.Goal s ON s.subject.patientId = m.patient_id AND s.lifecycleStatus = 'active' AND s.category[SAFE_OFFSET(0)].text = 'sub-goal' AND s.note[SAFE_OFFSET(0)].text = CONCAT('partOf: Goal/', m.goal_id)"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Goal", "education"]
+  },
+  {
+    "id": "fhir_neonatal_goal_education_subgoal",
+    "nl_prompt": "For on-study patients on ResearchStudy e7e8ae43-a33e-45c2-a0e3-be909d319ff9, return the education sub-goal that is partOf the 'Neonatal / Fetal Co-morbidity Reduction' major goal. Join sub-goal note.text = CONCAT('partOf: Goal/', major.id). Return ONLY patient_id, major_goal, and sub_goal. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH enrolled AS (SELECT DISTINCT rs.individual.patientId AS patient_id FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9'), majors AS (SELECT g.subject.patientId AS patient_id, g.id AS goal_id, g.description.text AS major_goal FROM {{dataset}}.Goal g WHERE g.lifecycleStatus = 'active' AND g.category[SAFE_OFFSET(0)].text = 'major-goal' AND g.description.text = 'Neonatal / Fetal Co-morbidity Reduction' QUALIFY ROW_NUMBER() OVER (PARTITION BY g.id ORDER BY g.commitTimestamp DESC) = 1) SELECT m.patient_id, m.major_goal, s.description.text AS sub_goal FROM enrolled e INNER JOIN majors m ON m.patient_id = e.patient_id INNER JOIN {{dataset}}.Goal s ON s.subject.patientId = m.patient_id AND s.lifecycleStatus = 'active' AND s.category[SAFE_OFFSET(0)].text = 'sub-goal' AND s.note[SAFE_OFFSET(0)].text = CONCAT('partOf: Goal/', m.goal_id)"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Goal", "education"]
+  },
+  {
+    "id": "fhir_activity_goal_unlinked",
+    "nl_prompt": "How many completed WHO ANC8 CarePlan patient-action activities have no Goal binding? Use latest streamed CarePlan per id, status = active, instantiatesCanonical IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8'), activity.detail.description starting with 'Patient action:', activity.detail.status = completed, and ARRAY_LENGTH(activity.detail.goal) = 0. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH latest AS (SELECT * FROM {{dataset}}.CarePlan WHERE status = 'active' QUALIFY ROW_NUMBER() OVER (PARTITION BY id ORDER BY commitTimestamp DESC) = 1) SELECT COUNT(*) AS n FROM latest cp, UNNEST(cp.activity) act WHERE EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND STARTS_WITH(IFNULL(act.detail.description, ''), 'Patient action:') AND act.detail.status = 'completed' AND ARRAY_LENGTH(act.detail.goal) = 0"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "Goal"]
+  },
+  {
+    "id": "fhir_enrolled_missing_maternal_education_action",
+    "nl_prompt": "How many on-study patients on ResearchStudy e7e8ae43-a33e-45c2-a0e3-be909d319ff9 are missing a completed CarePlan activity described exactly 'Patient action: review maternal education resource'? Use active WHO ANC8 CarePlans and latest streamed row per plan. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH enrolled AS (SELECT DISTINCT rs.individual.patientId AS patient_id FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9'), latest AS (SELECT * FROM {{dataset}}.CarePlan WHERE status = 'active' QUALIFY ROW_NUMBER() OVER (PARTITION BY id ORDER BY commitTimestamp DESC) = 1) SELECT COUNT(*) AS n FROM enrolled e WHERE NOT EXISTS (SELECT 1 FROM latest cp, UNNEST(cp.activity) act WHERE cp.subject.patientId = e.patient_id AND EXISTS (SELECT 1 FROM UNNEST(cp.instantiatesCanonical) inst WHERE inst IN ('https://langcare.example.org/fhir/PlanDefinition/who-anc8', 'PlanDefinition/who-anc8')) AND act.detail.description = 'Patient action: review maternal education resource' AND act.detail.status = 'completed')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "education"]
+  },
+  {
+    "id": "fhir_enrolled_education_access",
+    "nl_prompt": "How many on-study patients on ResearchStudy e7e8ae43-a33e-45c2-a0e3-be909d319ff9 are missing a completed Task whose code.text is exactly 'Education resource access'? Task.for.patientId is the patient. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH enrolled AS (SELECT DISTINCT rs.individual.patientId AS patient_id FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9') SELECT COUNT(*) AS n FROM enrolled e WHERE NOT EXISTS (SELECT 1 FROM {{dataset}}.Task t WHERE t.for.patientId = e.patient_id AND t.code.text = 'Education resource access' AND t.status = 'completed')"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Task", "education"]
+  },
+  {
+    "id": "fhir_enrolled_below_anc4",
+    "nl_prompt": "How many on-study ResearchSubjects for ResearchStudy id e7e8ae43-a33e-45c2-a0e3-be909d319ff9 have fewer than 4 prenatal Encounters? Start FROM table ResearchSubject WHERE status = 'on-study' AND study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9'. LEFT JOIN Encounter visit counts on Encounter.subject.patientId = ResearchSubject.individual.patientId where Encounter.type.coding.code IN ('424619006', '424441002'). Count enrolled patients where IFNULL(prenatal_n, 0) < 4. Do not hardcode any patient UUID and do not SELECT a constant. Query both ResearchSubject and Encounter. Return ONLY a single row with column n.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "WITH enrolled AS (SELECT DISTINCT rs.individual.patientId AS patient_id FROM {{dataset}}.ResearchSubject rs WHERE rs.status = 'on-study' AND rs.study.researchStudyId = 'e7e8ae43-a33e-45c2-a0e3-be909d319ff9'), visits AS (SELECT e.subject.patientId AS patient_id, COUNT(*) AS prenatal_n FROM {{dataset}}.Encounter e, UNNEST(e.type) t, UNNEST(t.coding) c WHERE c.code IN ('424619006', '424441002') GROUP BY 1) SELECT COUNT(*) AS n FROM enrolled e LEFT JOIN visits v ON v.patient_id = e.patient_id WHERE IFNULL(v.prenatal_n, 0) < 4"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "Encounter", "ResearchSubject"]
+  },
+  {
+    "id": "fhir_cpg_bp_proposal",
+    "nl_prompt": "What ServiceRequest proposal was applied from ActivityDefinition/practice-blood-pressure for Patient/74ee3ce8-e896-433b-bb89-43c8ad5b333a? Query table ServiceRequest, not a View. Filter subject.patientId to this patient AND intent = 'proposal'. UNNEST instantiatesCanonical and keep the row where that scalar equals 'https://langcare.example.org/fhir/ActivityDefinition/practice-blood-pressure'. Return ONLY intent, code_snomed (code.coding[SAFE_OFFSET(0)].code), and instantiates (the unnested string, not the array). QUALIFY ROW_NUMBER() OVER (ORDER BY commitTimestamp DESC) = 1. Do not return other columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT sr.intent, sr.code.coding[SAFE_OFFSET(0)].code AS code_snomed, inst AS instantiates FROM {{dataset}}.ServiceRequest sr, UNNEST(sr.instantiatesCanonical) inst WHERE sr.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND sr.intent = 'proposal' AND inst = 'https://langcare.example.org/fhir/ActivityDefinition/practice-blood-pressure' QUALIFY ROW_NUMBER() OVER (ORDER BY sr.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "ServiceRequest", "cpg", "ActivityDefinition"]
+  },
+  {
+    "id": "fhir_cpg_careplan_bp_reference",
+    "nl_prompt": "Does CarePlan/e7b5bdec-76e5-4d97-9725-a43c29978af1 reference the applied blood-pressure ServiceRequest? Query table CarePlan and table ServiceRequest. UNNEST CarePlan.activity and join act.reference.serviceRequestId to ServiceRequest.id. Filter the ServiceRequest instantiatesCanonical = 'https://langcare.example.org/fhir/ActivityDefinition/practice-blood-pressure'. Return ONLY careplan_id, service_request_id, and instantiates. One latest streamed CarePlan row. Do not return activity.detail columns.",
+    "query_type": "dql",
+    "database": "synth_healthcare",
+    "dialects": ["bigquery"],
+    "golden_sql": {
+      "bigquery": [
+        "SELECT cp.id AS careplan_id, act.reference.serviceRequestId AS service_request_id, inst AS instantiates FROM {{dataset}}.CarePlan cp, UNNEST(cp.activity) act JOIN {{dataset}}.ServiceRequest sr ON sr.id = act.reference.serviceRequestId, UNNEST(sr.instantiatesCanonical) inst WHERE cp.id = 'e7b5bdec-76e5-4d97-9725-a43c29978af1' AND cp.subject.patientId = '74ee3ce8-e896-433b-bb89-43c8ad5b333a' AND inst = 'https://langcare.example.org/fhir/ActivityDefinition/practice-blood-pressure' QUALIFY ROW_NUMBER() OVER (ORDER BY cp.commitTimestamp DESC) = 1"
+      ]
+    },
+    "eval_query": {"bigquery": [null]},
+    "setup_sql": {},
+    "cleanup_sql": {},
+    "tags": ["fhir", "CarePlan", "ServiceRequest", "cpg"]
+  }
+]

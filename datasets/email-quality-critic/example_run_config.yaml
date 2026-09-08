@@ -1,0 +1,37 @@
+############################################################
+### Email Quality Critic (ADK Agent Engine)
+############################################################
+dataset_config: datasets/email-quality-critic/email-quality-critic.evalset.json
+dataset_format: agent-format
+
+orchestrator: agent
+model_config: datasets/email-quality-critic/model_configs/adk_agent.yaml
+simulated_user_model_config: datasets/model_configs/gemini_2.5_pro_model.yaml
+
+runners:
+  agent_runners: 2
+
+############################################################
+### Scorers
+############################################################
+scorers:
+  goal_completion:
+    model_config: datasets/model_configs/gemini_2.5_pro_model.yaml
+  binary_rubric_scorer:
+    model_config: datasets/model_configs/gemini_2.5_pro_model.yaml
+  judgement_contract:
+    type: python_scorer
+    script_path: datasets/email-quality-critic/scorers/judgement_contract.py
+  turn_count: {}
+  end_to_end_latency: {}
+
+############################################################
+### Reporting
+############################################################
+reporting:
+  csv:
+    output_directory: results
+  bigquery:
+    gcp_project_id: !ENV ${EVAL_GCP_PROJECT_ID}
+    dataset_id: evalbench
+    dataset_location: US

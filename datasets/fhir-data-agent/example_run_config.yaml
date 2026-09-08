@@ -1,0 +1,44 @@
+############################################################
+### FHIR Data Agent (Agent Engine → BigQuery ANALYTICS_V2)
+############################################################
+dataset_config: datasets/fhir-data-agent/prompts.json
+dataset_format: evalbench-standard-format
+num_trials: 1
+
+database_configs:
+  - datasets/fhir-data-agent/db_configs/bigquery.yaml
+databases:
+  - synth_healthcare
+dialects:
+  - bigquery
+query_types:
+  - dql
+
+############################################################
+### Prompt and Generation
+############################################################
+# Send the NL question straight to the deployed FHIR agent.
+# Do not wrap it in a generic NL2SQL schema prompt.
+model_config: datasets/fhir-data-agent/model_configs/agent_runtime.yaml
+prompt_generator: NOOPGenerator
+
+############################################################
+### Scorers
+############################################################
+scorers:
+  returned_sql: null
+  executable_sql: null
+  set_match: null
+  llmrater:
+    model_config: datasets/model_configs/gemini_2.5_pro_model.yaml
+
+############################################################
+### Reporting
+############################################################
+reporting:
+  csv:
+    output_directory: results
+  bigquery:
+    gcp_project_id: !ENV ${EVAL_GCP_PROJECT_ID}
+    dataset_id: evalbench
+    dataset_location: US

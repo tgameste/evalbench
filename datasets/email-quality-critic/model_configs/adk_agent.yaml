@@ -1,0 +1,17 @@
+# Email Quality Critic — ADK Agent Engine (or local ADK FastAPI).
+# Unlike agent_runtime, this generator keeps the full critique text.
+generator: adk_agent
+
+# Deployed critic (see agents/email-quality-critic/deployment_metadata.json).
+# Override with a full resource name — not projects/.../reasoningEngines/...
+resource_name: !ENV ${AGENT_ENGINE_RESOURCE:projects/689632009240/locations/us-east1/reasoningEngines/7997777211698446336}
+class_method: async_stream_query
+# Optional local ADK server instead of Agent Engine:
+# url: http://127.0.0.1:8000
+# app_name: app
+
+gcp_project_id: !ENV ${EVAL_GCP_PROJECT_ID}
+gcp_region: !ENV ${EVAL_GCP_PROJECT_REGION:us-east1}
+
+execs_per_minute: 6
+max_attempts: 3

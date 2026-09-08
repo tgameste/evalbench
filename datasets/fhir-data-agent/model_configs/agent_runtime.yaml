@@ -1,0 +1,11 @@
+# FHIR Data Agent — Agent Engine (Gemini Enterprise Agent Platform)
+generator: agent_runtime
+
+# Live reasoning engine. Override with AGENT_ENGINE_RESOURCE if needed.
+resource_name: !ENV ${AGENT_ENGINE_RESOURCE:projects/mktg-vdc-poc-r83n/locations/us-central1/reasoningEngines/5634765645154353152}
+
+gcp_project_id: !ENV ${EVAL_GCP_PROJECT_ID}
+gcp_region: !ENV ${EVAL_GCP_PROJECT_REGION:us-central1}
+
+execs_per_minute: 6
+max_attempts: 3
